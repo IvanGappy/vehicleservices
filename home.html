@@ -1,0 +1,205 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Vehicle Services</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">Home</a></li>
+                <li><a href="" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div ng-show="home" class="row" style="padding-top: 20px;">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">Current User Information</h3>
+            </div>
+            <table class="table tablesorter table-responsive table-striped table-hover"
+                   style="overflow:auto;border-collapse:collapse;">
+                <tbody>
+                <tr>
+                    <td>User:</td>
+                    <td>{{customerInfo.userName}}</td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>{{customerInfo.firstName}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>{{customerInfo.lastName}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{customerInfo.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>{{customerInfo.phone}}</td>
+                </tr>
+                <tr>
+                    <td>Customer ID:</td>
+                    <td>{{customerInfo.customerId}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="" class="btn btn-primary btn-md" ng-click="showAddVehicle()">Add Vehicle <i class="fa fa-sign-in"></i></a>
+<a href="" class="btn btn-primary btn-md" ng-click="showRegisterService()">Register Service <i
+        class="fa fa-sign-in"></i></a>
+<div ng-show="addingVehicle" class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">Register Vehicle</h3>
+                </div>
+            <div class="form-login">
+                <input ng-model="make" type="text" class="form-control input-sm chat-input" placeholder="make"/>
+                </br>
+                <input ng-model="model" type="text" class="form-control input-sm chat-input" placeholder="model"/>
+                </br>
+                <input ng-model="year" type="text" class="form-control input-sm chat-input" placeholder="year"/>
+                </br>
+                <input ng-model="mileage" type="text" class="form-control input-sm chat-input" placeholder="mileage"/>
+                </br>
+                <input ng-model="condition" type="text" class="form-control input-sm chat-input"
+                       placeholder="condition"/>
+                </br>
+                <div class="wrapper">
+            <span class="group-btn">
+                <a href="" class="btn btn-primary btn-md" ng-click="addVehicle()">submit <i
+                        class="fa fa-sign-in"></i></a>
+            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">Current User Vehicles</h3>
+                </div>
+                <table class="table tablesorter table-responsive table-striped table-hover"
+                       style="overflow:auto;border-collapse:collapse;">
+                    <thead>
+                    <tr style="background-color:white;">
+                        <th class='header' ng-repeat="header in vehicleHeaders">{{header}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="vehicle in customerVehicles">
+                        <td>{{vehicle.make}}</td>
+                        <td>{{vehicle.model}}</td>
+                        <td>{{vehicle.year}}</td>
+                        <td>{{vehicle.mileage}}</td>
+                        <td>{{vehicle.condition}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div ng-show="registeringService" class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">Register Service</h3>
+                </div>
+            <form>
+                <div class="form-group">
+                    <label>Service</label>
+                    <select ng-model="service">
+                        <option value="" selected disabled>Select Service</option>
+                        <option value="{{service.serviceId}} {{service.serviceType}}" ng-repeat="service in services">({{service.serviceId}}) {{service.serviceType}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Technician</label>
+                    <select ng-model="tech">
+                        <option value="" selected disabled>Select Technician</option>
+                        <option value="{{tech.technicianId}} {{tech.firstName}} {{tech.lastName}}" ng-repeat="tech in technicians">({{tech.technicianId}}) {{tech.firstName}} {{tech.lastName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Vehicle</label>
+                    <select ng-model="vehicle">
+                        <option value="" selected disabled>Select Vehicle</option>
+                        <option value="{{vehicle.vehicleId}} {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}" ng-repeat="vehicle in customerVehicles">({{vehicle.vehicleId}}) {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Day</label>
+                    <select ng-model="day">
+                        <option value="" selected disabled>Select Day</option>
+                        <option value="{{day}}" ng-repeat="day in week">{{day}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <select ng-model="time">
+                        <option value="" selected disabled>Select Time</option>
+                        <option value="{{hour}}" ng-repeat="hour in hours">{{hour}}</option>
+                    </select>
+                </div>
+                <div class="wrapper">
+            <span class="group-btn">
+                <a href="" class="btn btn-primary btn-md" ng-click="getInfoForAddService()">submit <i
+                        class="fa fa-sign-in"></i></a>
+            </span>
+                    <label class="registerFailed" ng-show="addServiceFailed">Error submitting: all fields are required.</label>
+                    <label class="registerFailed" ng-show="addServiceFailedTime">Error submitting: selected time is not available.</label>
+                    <label class="registerSuccess" ng-show="addServiceSuccess">Service successfully scheduled!</label>
+                </div>
+            </form>
+        </div>
+    </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">Current Service Schedule</h3>
+                </div>
+                <table class="table tablesorter table-responsive table-striped table-hover"
+                       style="overflow:auto;border-collapse:collapse;">
+                    <thead>
+                    <tr style="background-color:white;">
+                        <th class='header' ng-repeat="header in serviceHeaders">{{header}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="service in customerServices">
+                        <td>{{vehicle.make}}</td>
+                        <td>{{vehicle.model}}</td>
+                        <td>{{vehicle.year}}</td>
+                        <td>{{vehicle.mileage}}</td>
+                        <td>{{vehicle.condition}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

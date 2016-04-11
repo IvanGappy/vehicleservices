@@ -1,0 +1,29 @@
+.back {
+    margin-right: 15px;
+    cursor: pointer;
+}
+.loginFailed {
+    color: red;
+}
+.registerFailed {
+    color: red;
+}
+.registerSuccess {
+    color: lawngreen;
+}
+a.back:hover {
+    text-underline: none;
+}
+
+p.actionItem {
+    cursor: hand;
+    text-decoration: underline;
+    color: blue;
+}
+
+p.actionItem:active {
+    color: green;
+}
+.form-login>select {
+    margin-top: 5px;
+}
